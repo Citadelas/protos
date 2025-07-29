@@ -443,7 +443,7 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x12E\n" +
 	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\x126\n" +
-	"\aIsAdmin\x12\x14.auth.isAdminRequest\x1a\x15.auth.IsAdminResponseB\x18Z\x16citadelas.sso.v1;ssov1b\x06proto3"
+	"\aIsAdmin\x12\x14.auth.isAdminRequest\x1a\x15.auth.IsAdminResponseB\x18Z\x16Citadelas.sso.v1;ssov1b\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
