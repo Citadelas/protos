@@ -44,11 +44,10 @@ jobs:
               --go-grpc_out=golang/ --go-grpc_opt=paths=source_relative \
               ${pkg}/${pkg}.proto
             # инициализировать go.mod, если его ещё нет
-            if [ ! -f golang/${pkg}/go.mod ]; then
-              (cd golang/${pkg} && \
-                go mod init github.com/Citadelas/protos/golang/${pkg})
+            if [ ! -f go.mod ]; then
+              ( go mod init github.com/Citadelas/protos)
             fi
-            (cd golang/${pkg} && go mod tidy)
+            (go mod tidy)
           done
 
       - name: Commit & push generated code
