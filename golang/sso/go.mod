@@ -1,4 +1,4 @@
-module github.com/muerewa/grpc-protos/golang/sso
+module github.com/Citadelas/protos/golang/sso
 
 go 1.24.5
 
