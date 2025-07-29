@@ -1,6 +1,6 @@
 module github.com/muerewa/grpc-protos/golang/sso
 
-go 1.24.4
+go 1.24
 
 require (
 	google.golang.org/grpc v1.74.2
