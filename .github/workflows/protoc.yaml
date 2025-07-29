@@ -46,7 +46,7 @@ jobs:
             # инициализировать go.mod, если его ещё нет
             if [ ! -f golang/${pkg}/go.mod ]; then
               (cd golang/${pkg} && \
-                go mod init github.com/muerewa/grpc-protos/golang/${pkg})
+                go mod init github.com/Citadelas/protos/golang/${pkg})
             fi
             (cd golang/${pkg} && go mod tidy)
           done
