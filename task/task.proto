@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "Citadelas.task.v1;ssov1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service TaskService {
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty);
+
+  rpc UpdateStatus(UpdateStatusRequest) returns (UpdateStatusResponse);
+}
+
+enum TaskStatus {
+  TODO = 0;
+  IN_PROGRESS = 1;
+  DONE = 2;
+}
+
+enum TaskPriority {
+  LOW = 0;
+  MEDIUM = 1;
+  HIGH = 2;
+}
+
+message Task {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  TaskStatus status = 4;
+  TaskPriority priority = 5;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp due_date = 9;
+}
+
+message CreateTaskRequest {
+  string title = 1;
+  string description = 2;
+  TaskPriority priority = 3;
+  string assigned_to = 4;
+  string project_id = 5;
+  google.protobuf.Timestamp due_date = 6;
+}
+
+message CreateTaskResponse {
+  Task task = 1;
+}
+
+message GetTaskRequest {
+  string id = 1;
+}
+
+message GetTaskResponse {
+  Task task = 1;
+}
+
+message UpdateTaskRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  TaskPriority priority = 4;
+  string assigned_to = 5;
+  google.protobuf.Timestamp due_date = 6;
+}
+
+message UpdateTaskResponse {
+  Task task = 1;
+}
+
+message DeleteTaskRequest {
+  string id = 1;
+}
+
+message UpdateStatusRequest {
+  string id = 1;
+  TaskStatus status = 2;
+}
+
+message UpdateStatusResponse {
+  Task task = 1;
+}
