@@ -29,7 +29,7 @@ enum TaskPriority {
 }
 
 message Task {
-  string id = 1;
+  uint64 id = 1;
   string title = 2;
   string description = 3;
   TaskStatus status = 4;
@@ -42,8 +42,6 @@ message CreateTaskRequest {
   string title = 1;
   string description = 2;
   TaskPriority priority = 3;
-  string assigned_to = 4;
-  string project_id = 5;
   google.protobuf.Timestamp due_date = 6;
 }
 
@@ -52,7 +50,7 @@ message CreateTaskResponse {
 }
 
 message GetTaskRequest {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message GetTaskResponse {
@@ -60,11 +58,10 @@ message GetTaskResponse {
 }
 
 message UpdateTaskRequest {
-  string id = 1;
+  uint64 id = 1;
   string title = 2;
   string description = 3;
   TaskPriority priority = 4;
-  string assigned_to = 5;
   google.protobuf.Timestamp due_date = 6;
 }
 
@@ -73,11 +70,11 @@ message UpdateTaskResponse {
 }
 
 message DeleteTaskRequest {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message UpdateStatusRequest {
-  string id = 1;
+  uint64 id = 1;
   TaskStatus status = 2;
 }
 
