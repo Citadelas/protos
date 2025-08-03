@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "Citadelas.task.v1;ssov1";
+option go_package = "Citadelas.task.v1;taskv1";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
