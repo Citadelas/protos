@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: task/task.proto
 
-package ssov1
+package taskv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -123,7 +123,7 @@ func (TaskPriority) EnumDescriptor() ([]byte, []int) {
 
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Status        TaskStatus             `protobuf:"varint,4,opt,name=status,proto3,enum=auth.TaskStatus" json:"status,omitempty"`
@@ -164,11 +164,11 @@ func (*Task) Descriptor() ([]byte, []int) {
 	return file_task_task_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Task) GetId() string {
+func (x *Task) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *Task) GetTitle() string {
@@ -218,8 +218,6 @@ type CreateTaskRequest struct {
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Priority      TaskPriority           `protobuf:"varint,3,opt,name=priority,proto3,enum=auth.TaskPriority" json:"priority,omitempty"`
-	AssignedTo    string                 `protobuf:"bytes,4,opt,name=assigned_to,json=assignedTo,proto3" json:"assigned_to,omitempty"`
-	ProjectId     string                 `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	DueDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=due_date,json=dueDate,proto3" json:"due_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -276,20 +274,6 @@ func (x *CreateTaskRequest) GetPriority() TaskPriority {
 	return TaskPriority_LOW
 }
 
-func (x *CreateTaskRequest) GetAssignedTo() string {
-	if x != nil {
-		return x.AssignedTo
-	}
-	return ""
-}
-
-func (x *CreateTaskRequest) GetProjectId() string {
-	if x != nil {
-		return x.ProjectId
-	}
-	return ""
-}
-
 func (x *CreateTaskRequest) GetDueDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DueDate
@@ -343,7 +327,7 @@ func (x *CreateTaskResponse) GetTask() *Task {
 
 type GetTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -378,11 +362,11 @@ func (*GetTaskRequest) Descriptor() ([]byte, []int) {
 	return file_task_task_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetTaskRequest) GetId() string {
+func (x *GetTaskRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type GetTaskResponse struct {
@@ -431,11 +415,10 @@ func (x *GetTaskResponse) GetTask() *Task {
 
 type UpdateTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Priority      TaskPriority           `protobuf:"varint,4,opt,name=priority,proto3,enum=auth.TaskPriority" json:"priority,omitempty"`
-	AssignedTo    string                 `protobuf:"bytes,5,opt,name=assigned_to,json=assignedTo,proto3" json:"assigned_to,omitempty"`
 	DueDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=due_date,json=dueDate,proto3" json:"due_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -471,11 +454,11 @@ func (*UpdateTaskRequest) Descriptor() ([]byte, []int) {
 	return file_task_task_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdateTaskRequest) GetId() string {
+func (x *UpdateTaskRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *UpdateTaskRequest) GetTitle() string {
@@ -497,13 +480,6 @@ func (x *UpdateTaskRequest) GetPriority() TaskPriority {
 		return x.Priority
 	}
 	return TaskPriority_LOW
-}
-
-func (x *UpdateTaskRequest) GetAssignedTo() string {
-	if x != nil {
-		return x.AssignedTo
-	}
-	return ""
 }
 
 func (x *UpdateTaskRequest) GetDueDate() *timestamppb.Timestamp {
@@ -559,7 +535,7 @@ func (x *UpdateTaskResponse) GetTask() *Task {
 
 type DeleteTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -594,16 +570,16 @@ func (*DeleteTaskRequest) Descriptor() ([]byte, []int) {
 	return file_task_task_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *DeleteTaskRequest) GetId() string {
+func (x *DeleteTaskRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type UpdateStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Status        TaskStatus             `protobuf:"varint,2,opt,name=status,proto3,enum=auth.TaskStatus" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -639,11 +615,11 @@ func (*UpdateStatusRequest) Descriptor() ([]byte, []int) {
 	return file_task_task_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *UpdateStatusRequest) GetId() string {
+func (x *UpdateStatusRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *UpdateStatusRequest) GetStatus() TaskStatus {
@@ -703,46 +679,40 @@ const file_task_task_proto_rawDesc = "" +
 	"\n" +
 	"\x0ftask/task.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x9a\x02\n" +
 	"\x04Task\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12(\n" +
 	"\x06status\x18\x04 \x01(\x0e2\x10.auth.TaskStatusR\x06status\x12.\n" +
 	"\bpriority\x18\x05 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x129\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x125\n" +
-	"\bdue_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"\xf2\x01\n" +
+	"\bdue_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"\xb2\x01\n" +
 	"\x11CreateTaskRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12.\n" +
-	"\bpriority\x18\x03 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x12\x1f\n" +
-	"\vassigned_to\x18\x04 \x01(\tR\n" +
-	"assignedTo\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\x05 \x01(\tR\tprojectId\x125\n" +
+	"\bpriority\x18\x03 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x125\n" +
 	"\bdue_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"4\n" +
 	"\x12CreateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
 	".auth.TaskR\x04task\" \n" +
 	"\x0eGetTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"1\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"1\n" +
 	"\x0fGetTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".auth.TaskR\x04task\"\xe3\x01\n" +
+	".auth.TaskR\x04task\"\xc2\x01\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12.\n" +
-	"\bpriority\x18\x04 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x12\x1f\n" +
-	"\vassigned_to\x18\x05 \x01(\tR\n" +
-	"assignedTo\x125\n" +
+	"\bpriority\x18\x04 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x125\n" +
 	"\bdue_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"4\n" +
 	"\x12UpdateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
 	".auth.TaskR\x04task\"#\n" +
 	"\x11DeleteTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"O\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"O\n" +
 	"\x13UpdateStatusRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12(\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12(\n" +
 	"\x06status\x18\x02 \x01(\x0e2\x10.auth.TaskStatusR\x06status\"6\n" +
 	"\x14UpdateStatusResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
@@ -765,7 +735,7 @@ const file_task_task_proto_rawDesc = "" +
 	"UpdateTask\x12\x17.auth.UpdateTaskRequest\x1a\x18.auth.UpdateTaskResponse\x12=\n" +
 	"\n" +
 	"DeleteTask\x12\x17.auth.DeleteTaskRequest\x1a\x16.google.protobuf.Empty\x12E\n" +
-	"\fUpdateStatus\x12\x19.auth.UpdateStatusRequest\x1a\x1a.auth.UpdateStatusResponseB\x19Z\x17Citadelas.task.v1;ssov1b\x06proto3"
+	"\fUpdateStatus\x12\x19.auth.UpdateStatusRequest\x1a\x1a.auth.UpdateStatusResponseB\x1aZ\x18Citadelas.task.v1;taskv1b\x06proto3"
 
 var (
 	file_task_task_proto_rawDescOnce sync.Once
