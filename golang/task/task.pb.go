@@ -126,8 +126,8 @@ type Task struct {
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Status        TaskStatus             `protobuf:"varint,4,opt,name=status,proto3,enum=auth.TaskStatus" json:"status,omitempty"`
-	Priority      TaskPriority           `protobuf:"varint,5,opt,name=priority,proto3,enum=auth.TaskPriority" json:"priority,omitempty"`
+	Status        TaskStatus             `protobuf:"varint,4,opt,name=status,proto3,enum=task.TaskStatus" json:"status,omitempty"`
+	Priority      TaskPriority           `protobuf:"varint,5,opt,name=priority,proto3,enum=task.TaskPriority" json:"priority,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	DueDate       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=due_date,json=dueDate,proto3" json:"due_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -217,7 +217,7 @@ type CreateTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	Priority      TaskPriority           `protobuf:"varint,3,opt,name=priority,proto3,enum=auth.TaskPriority" json:"priority,omitempty"`
+	Priority      TaskPriority           `protobuf:"varint,3,opt,name=priority,proto3,enum=task.TaskPriority" json:"priority,omitempty"`
 	DueDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=due_date,json=dueDate,proto3" json:"due_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -418,7 +418,7 @@ type UpdateTaskRequest struct {
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Priority      TaskPriority           `protobuf:"varint,4,opt,name=priority,proto3,enum=auth.TaskPriority" json:"priority,omitempty"`
+	Priority      TaskPriority           `protobuf:"varint,4,opt,name=priority,proto3,enum=task.TaskPriority" json:"priority,omitempty"`
 	DueDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=due_date,json=dueDate,proto3" json:"due_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -580,7 +580,7 @@ func (x *DeleteTaskRequest) GetId() uint64 {
 type UpdateStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status        TaskStatus             `protobuf:"varint,2,opt,name=status,proto3,enum=auth.TaskStatus" json:"status,omitempty"`
+	Status        TaskStatus             `protobuf:"varint,2,opt,name=status,proto3,enum=task.TaskStatus" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -677,46 +677,46 @@ var File_task_task_proto protoreflect.FileDescriptor
 
 const file_task_task_proto_rawDesc = "" +
 	"\n" +
-	"\x0ftask/task.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x9a\x02\n" +
+	"\x0ftask/task.proto\x12\x04task\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x9a\x02\n" +
 	"\x04Task\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12(\n" +
-	"\x06status\x18\x04 \x01(\x0e2\x10.auth.TaskStatusR\x06status\x12.\n" +
-	"\bpriority\x18\x05 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x129\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x10.task.TaskStatusR\x06status\x12.\n" +
+	"\bpriority\x18\x05 \x01(\x0e2\x12.task.TaskPriorityR\bpriority\x129\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x125\n" +
 	"\bdue_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"\xb2\x01\n" +
 	"\x11CreateTaskRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12.\n" +
-	"\bpriority\x18\x03 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x125\n" +
+	"\bpriority\x18\x03 \x01(\x0e2\x12.task.TaskPriorityR\bpriority\x125\n" +
 	"\bdue_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"4\n" +
 	"\x12CreateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".auth.TaskR\x04task\" \n" +
+	".task.TaskR\x04task\" \n" +
 	"\x0eGetTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"1\n" +
 	"\x0fGetTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".auth.TaskR\x04task\"\xc2\x01\n" +
+	".task.TaskR\x04task\"\xc2\x01\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12.\n" +
-	"\bpriority\x18\x04 \x01(\x0e2\x12.auth.TaskPriorityR\bpriority\x125\n" +
+	"\bpriority\x18\x04 \x01(\x0e2\x12.task.TaskPriorityR\bpriority\x125\n" +
 	"\bdue_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\adueDate\"4\n" +
 	"\x12UpdateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".auth.TaskR\x04task\"#\n" +
+	".task.TaskR\x04task\"#\n" +
 	"\x11DeleteTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"O\n" +
 	"\x13UpdateStatusRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12(\n" +
-	"\x06status\x18\x02 \x01(\x0e2\x10.auth.TaskStatusR\x06status\"6\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x10.task.TaskStatusR\x06status\"6\n" +
 	"\x14UpdateStatusResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".auth.TaskR\x04task*1\n" +
+	".task.TaskR\x04task*1\n" +
 	"\n" +
 	"TaskStatus\x12\b\n" +
 	"\x04TODO\x10\x00\x12\x0f\n" +
@@ -729,13 +729,13 @@ const file_task_task_proto_rawDesc = "" +
 	"\x04HIGH\x10\x022\xcd\x02\n" +
 	"\vTaskService\x12?\n" +
 	"\n" +
-	"CreateTask\x12\x17.auth.CreateTaskRequest\x1a\x18.auth.CreateTaskResponse\x126\n" +
-	"\aGetTask\x12\x14.auth.GetTaskRequest\x1a\x15.auth.GetTaskResponse\x12?\n" +
+	"CreateTask\x12\x17.task.CreateTaskRequest\x1a\x18.task.CreateTaskResponse\x126\n" +
+	"\aGetTask\x12\x14.task.GetTaskRequest\x1a\x15.task.GetTaskResponse\x12?\n" +
 	"\n" +
-	"UpdateTask\x12\x17.auth.UpdateTaskRequest\x1a\x18.auth.UpdateTaskResponse\x12=\n" +
+	"UpdateTask\x12\x17.task.UpdateTaskRequest\x1a\x18.task.UpdateTaskResponse\x12=\n" +
 	"\n" +
-	"DeleteTask\x12\x17.auth.DeleteTaskRequest\x1a\x16.google.protobuf.Empty\x12E\n" +
-	"\fUpdateStatus\x12\x19.auth.UpdateStatusRequest\x1a\x1a.auth.UpdateStatusResponseB\x1aZ\x18Citadelas.task.v1;taskv1b\x06proto3"
+	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x16.google.protobuf.Empty\x12E\n" +
+	"\fUpdateStatus\x12\x19.task.UpdateStatusRequest\x1a\x1a.task.UpdateStatusResponseB\x1aZ\x18Citadelas.task.v1;taskv1b\x06proto3"
 
 var (
 	file_task_task_proto_rawDescOnce sync.Once
@@ -752,45 +752,45 @@ func file_task_task_proto_rawDescGZIP() []byte {
 var file_task_task_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_task_task_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_task_task_proto_goTypes = []any{
-	(TaskStatus)(0),               // 0: auth.TaskStatus
-	(TaskPriority)(0),             // 1: auth.TaskPriority
-	(*Task)(nil),                  // 2: auth.Task
-	(*CreateTaskRequest)(nil),     // 3: auth.CreateTaskRequest
-	(*CreateTaskResponse)(nil),    // 4: auth.CreateTaskResponse
-	(*GetTaskRequest)(nil),        // 5: auth.GetTaskRequest
-	(*GetTaskResponse)(nil),       // 6: auth.GetTaskResponse
-	(*UpdateTaskRequest)(nil),     // 7: auth.UpdateTaskRequest
-	(*UpdateTaskResponse)(nil),    // 8: auth.UpdateTaskResponse
-	(*DeleteTaskRequest)(nil),     // 9: auth.DeleteTaskRequest
-	(*UpdateStatusRequest)(nil),   // 10: auth.UpdateStatusRequest
-	(*UpdateStatusResponse)(nil),  // 11: auth.UpdateStatusResponse
+	(TaskStatus)(0),               // 0: task.TaskStatus
+	(TaskPriority)(0),             // 1: task.TaskPriority
+	(*Task)(nil),                  // 2: task.Task
+	(*CreateTaskRequest)(nil),     // 3: task.CreateTaskRequest
+	(*CreateTaskResponse)(nil),    // 4: task.CreateTaskResponse
+	(*GetTaskRequest)(nil),        // 5: task.GetTaskRequest
+	(*GetTaskResponse)(nil),       // 6: task.GetTaskResponse
+	(*UpdateTaskRequest)(nil),     // 7: task.UpdateTaskRequest
+	(*UpdateTaskResponse)(nil),    // 8: task.UpdateTaskResponse
+	(*DeleteTaskRequest)(nil),     // 9: task.DeleteTaskRequest
+	(*UpdateStatusRequest)(nil),   // 10: task.UpdateStatusRequest
+	(*UpdateStatusResponse)(nil),  // 11: task.UpdateStatusResponse
 	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
 	(*emptypb.Empty)(nil),         // 13: google.protobuf.Empty
 }
 var file_task_task_proto_depIdxs = []int32{
-	0,  // 0: auth.Task.status:type_name -> auth.TaskStatus
-	1,  // 1: auth.Task.priority:type_name -> auth.TaskPriority
-	12, // 2: auth.Task.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: auth.Task.due_date:type_name -> google.protobuf.Timestamp
-	1,  // 4: auth.CreateTaskRequest.priority:type_name -> auth.TaskPriority
-	12, // 5: auth.CreateTaskRequest.due_date:type_name -> google.protobuf.Timestamp
-	2,  // 6: auth.CreateTaskResponse.task:type_name -> auth.Task
-	2,  // 7: auth.GetTaskResponse.task:type_name -> auth.Task
-	1,  // 8: auth.UpdateTaskRequest.priority:type_name -> auth.TaskPriority
-	12, // 9: auth.UpdateTaskRequest.due_date:type_name -> google.protobuf.Timestamp
-	2,  // 10: auth.UpdateTaskResponse.task:type_name -> auth.Task
-	0,  // 11: auth.UpdateStatusRequest.status:type_name -> auth.TaskStatus
-	2,  // 12: auth.UpdateStatusResponse.task:type_name -> auth.Task
-	3,  // 13: auth.TaskService.CreateTask:input_type -> auth.CreateTaskRequest
-	5,  // 14: auth.TaskService.GetTask:input_type -> auth.GetTaskRequest
-	7,  // 15: auth.TaskService.UpdateTask:input_type -> auth.UpdateTaskRequest
-	9,  // 16: auth.TaskService.DeleteTask:input_type -> auth.DeleteTaskRequest
-	10, // 17: auth.TaskService.UpdateStatus:input_type -> auth.UpdateStatusRequest
-	4,  // 18: auth.TaskService.CreateTask:output_type -> auth.CreateTaskResponse
-	6,  // 19: auth.TaskService.GetTask:output_type -> auth.GetTaskResponse
-	8,  // 20: auth.TaskService.UpdateTask:output_type -> auth.UpdateTaskResponse
-	13, // 21: auth.TaskService.DeleteTask:output_type -> google.protobuf.Empty
-	11, // 22: auth.TaskService.UpdateStatus:output_type -> auth.UpdateStatusResponse
+	0,  // 0: task.Task.status:type_name -> task.TaskStatus
+	1,  // 1: task.Task.priority:type_name -> task.TaskPriority
+	12, // 2: task.Task.created_at:type_name -> google.protobuf.Timestamp
+	12, // 3: task.Task.due_date:type_name -> google.protobuf.Timestamp
+	1,  // 4: task.CreateTaskRequest.priority:type_name -> task.TaskPriority
+	12, // 5: task.CreateTaskRequest.due_date:type_name -> google.protobuf.Timestamp
+	2,  // 6: task.CreateTaskResponse.task:type_name -> task.Task
+	2,  // 7: task.GetTaskResponse.task:type_name -> task.Task
+	1,  // 8: task.UpdateTaskRequest.priority:type_name -> task.TaskPriority
+	12, // 9: task.UpdateTaskRequest.due_date:type_name -> google.protobuf.Timestamp
+	2,  // 10: task.UpdateTaskResponse.task:type_name -> task.Task
+	0,  // 11: task.UpdateStatusRequest.status:type_name -> task.TaskStatus
+	2,  // 12: task.UpdateStatusResponse.task:type_name -> task.Task
+	3,  // 13: task.TaskService.CreateTask:input_type -> task.CreateTaskRequest
+	5,  // 14: task.TaskService.GetTask:input_type -> task.GetTaskRequest
+	7,  // 15: task.TaskService.UpdateTask:input_type -> task.UpdateTaskRequest
+	9,  // 16: task.TaskService.DeleteTask:input_type -> task.DeleteTaskRequest
+	10, // 17: task.TaskService.UpdateStatus:input_type -> task.UpdateStatusRequest
+	4,  // 18: task.TaskService.CreateTask:output_type -> task.CreateTaskResponse
+	6,  // 19: task.TaskService.GetTask:output_type -> task.GetTaskResponse
+	8,  // 20: task.TaskService.UpdateTask:output_type -> task.UpdateTaskResponse
+	13, // 21: task.TaskService.DeleteTask:output_type -> google.protobuf.Empty
+	11, // 22: task.TaskService.UpdateStatus:output_type -> task.UpdateStatusResponse
 	18, // [18:23] is the sub-list for method output_type
 	13, // [13:18] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name

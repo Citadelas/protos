@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskService_CreateTask_FullMethodName   = "/auth.TaskService/CreateTask"
-	TaskService_GetTask_FullMethodName      = "/auth.TaskService/GetTask"
-	TaskService_UpdateTask_FullMethodName   = "/auth.TaskService/UpdateTask"
-	TaskService_DeleteTask_FullMethodName   = "/auth.TaskService/DeleteTask"
-	TaskService_UpdateStatus_FullMethodName = "/auth.TaskService/UpdateStatus"
+	TaskService_CreateTask_FullMethodName   = "/task.TaskService/CreateTask"
+	TaskService_GetTask_FullMethodName      = "/task.TaskService/GetTask"
+	TaskService_UpdateTask_FullMethodName   = "/task.TaskService/UpdateTask"
+	TaskService_DeleteTask_FullMethodName   = "/task.TaskService/DeleteTask"
+	TaskService_UpdateStatus_FullMethodName = "/task.TaskService/UpdateStatus"
 )
 
 // TaskServiceClient is the client API for TaskService service.
@@ -245,7 +245,7 @@ func _TaskService_UpdateStatus_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TaskService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.TaskService",
+	ServiceName: "task.TaskService",
 	HandlerType: (*TaskServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
