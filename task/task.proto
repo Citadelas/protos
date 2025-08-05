@@ -17,10 +17,12 @@ service TaskService {
 }
 
 enum TaskStatus {
-  TODO = 0;
-  IN_PROGRESS = 1;
-  DONE = 2;
+  TASK_STATUS_UNSPECIFIED = 0;
+  TODO = 1;
+  IN_PROGRESS = 2;
+  DONE = 3;
 }
+
 
 enum TaskPriority {
   LOW = 0;
