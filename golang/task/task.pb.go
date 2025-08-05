@@ -735,7 +735,7 @@ const file_task_task_proto_rawDesc = "" +
 	"UpdateTask\x12\x17.task.UpdateTaskRequest\x1a\x18.task.UpdateTaskResponse\x12=\n" +
 	"\n" +
 	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x16.google.protobuf.Empty\x12E\n" +
-	"\fUpdateStatus\x12\x19.task.UpdateStatusRequest\x1a\x1a.task.UpdateStatusResponseB\x1aZ\x18Citadelas.task.v1;taskv1b\x06proto3"
+	"\fUpdateStatus\x12\x19.task.UpdateStatusRequest\x1a\x1a.task.UpdateStatusResponseB)Z'github.com/Citadelas/protos/task;taskv1b\x06proto3"
 
 var (
 	file_task_task_proto_rawDescOnce sync.Once
