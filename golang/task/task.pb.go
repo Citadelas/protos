@@ -26,22 +26,25 @@ const (
 type TaskStatus int32
 
 const (
-	TaskStatus_TODO        TaskStatus = 0
-	TaskStatus_IN_PROGRESS TaskStatus = 1
-	TaskStatus_DONE        TaskStatus = 2
+	TaskStatus_TASK_STATUS_UNSPECIFIED TaskStatus = 0
+	TaskStatus_TODO                    TaskStatus = 1
+	TaskStatus_IN_PROGRESS             TaskStatus = 2
+	TaskStatus_DONE                    TaskStatus = 3
 )
 
 // Enum value maps for TaskStatus.
 var (
 	TaskStatus_name = map[int32]string{
-		0: "TODO",
-		1: "IN_PROGRESS",
-		2: "DONE",
+		0: "TASK_STATUS_UNSPECIFIED",
+		1: "TODO",
+		2: "IN_PROGRESS",
+		3: "DONE",
 	}
 	TaskStatus_value = map[string]int32{
-		"TODO":        0,
-		"IN_PROGRESS": 1,
-		"DONE":        2,
+		"TASK_STATUS_UNSPECIFIED": 0,
+		"TODO":                    1,
+		"IN_PROGRESS":             2,
+		"DONE":                    3,
 	}
 )
 
@@ -189,7 +192,7 @@ func (x *Task) GetStatus() TaskStatus {
 	if x != nil {
 		return x.Status
 	}
-	return TaskStatus_TODO
+	return TaskStatus_TASK_STATUS_UNSPECIFIED
 }
 
 func (x *Task) GetPriority() TaskPriority {
@@ -626,7 +629,7 @@ func (x *UpdateStatusRequest) GetStatus() TaskStatus {
 	if x != nil {
 		return x.Status
 	}
-	return TaskStatus_TODO
+	return TaskStatus_TASK_STATUS_UNSPECIFIED
 }
 
 type UpdateStatusResponse struct {
@@ -716,12 +719,13 @@ const file_task_task_proto_rawDesc = "" +
 	"\x06status\x18\x02 \x01(\x0e2\x10.task.TaskStatusR\x06status\"6\n" +
 	"\x14UpdateStatusResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".task.TaskR\x04task*1\n" +
+	".task.TaskR\x04task*N\n" +
 	"\n" +
-	"TaskStatus\x12\b\n" +
-	"\x04TODO\x10\x00\x12\x0f\n" +
-	"\vIN_PROGRESS\x10\x01\x12\b\n" +
-	"\x04DONE\x10\x02*-\n" +
+	"TaskStatus\x12\x1b\n" +
+	"\x17TASK_STATUS_UNSPECIFIED\x10\x00\x12\b\n" +
+	"\x04TODO\x10\x01\x12\x0f\n" +
+	"\vIN_PROGRESS\x10\x02\x12\b\n" +
+	"\x04DONE\x10\x03*-\n" +
 	"\fTaskPriority\x12\a\n" +
 	"\x03LOW\x10\x00\x12\n" +
 	"\n" +
