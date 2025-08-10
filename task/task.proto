@@ -12,7 +12,7 @@ service TaskService {
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty);
-  // rpc ListUserTasks(ListUserTasksRequest) returns (ListUserTasksResponse);
+  rpc ListUserTasks(ListUserTasksRequest) returns (ListUserTasksResponse);
 
   rpc UpdateStatus(UpdateStatusRequest) returns (UpdateStatusResponse);
 }
@@ -90,14 +90,14 @@ message UpdateStatusResponse {
   Task task = 1;
 }
 
-//message ListUserTasksRequest {
-//  string user_id = 1;
-//  int32 page_size = 2;
-//  string page_token = 3;
-//  TaskStatus status_filter = 4;
-//}
-//
-//message ListUserTasksResponse {
-//  repeated Task tasks = 1;
-//  string next_page_token = 2;
-//}
+message ListUserTasksRequest {
+  string user_id = 1;
+  int32 page_size = 2;
+  string page_token = 3;
+  TaskStatus status_filter = 4;
+}
+
+message ListUserTasksResponse {
+  repeated Task tasks = 1;
+  string next_page_token = 2;
+}
