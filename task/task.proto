@@ -12,6 +12,7 @@ service TaskService {
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty);
+  // rpc ListUserTasks(ListUserTasksRequest) returns (ListUserTasksResponse);
 
   rpc UpdateStatus(UpdateStatusRequest) returns (UpdateStatusResponse);
 }
@@ -22,7 +23,6 @@ enum TaskStatus {
   IN_PROGRESS = 2;
   DONE = 3;
 }
-
 
 enum TaskPriority {
   LOW = 0;
@@ -36,14 +36,16 @@ message Task {
   string description = 3;
   TaskStatus status = 4;
   TaskPriority priority = 5;
+  uint64 user_id = 6;  // Идентификатор пользователя-владельца задачи
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp due_date = 9;
 }
 
 message CreateTaskRequest {
-  string title = 1;
-  string description = 2;
-  TaskPriority priority = 3;
+  uint64 user_id = 1;  // Обязательное поле для идентификации пользователя
+  string title = 2;
+  string description = 3;
+  TaskPriority priority = 4;
   google.protobuf.Timestamp due_date = 6;
 }
 
@@ -52,7 +54,8 @@ message CreateTaskResponse {
 }
 
 message GetTaskRequest {
-  uint64 id = 1;
+  uint64 user_id = 1;  // Для проверки прав доступа
+  uint64 id = 2;
 }
 
 message GetTaskResponse {
@@ -60,10 +63,11 @@ message GetTaskResponse {
 }
 
 message UpdateTaskRequest {
-  uint64 id = 1;
-  string title = 2;
-  string description = 3;
-  TaskPriority priority = 4;
+  uint64 user_id = 1;  // Для проверки прав доступа
+  uint64 id = 2;
+  string title = 3;
+  string description = 4;
+  TaskPriority priority = 5;
   google.protobuf.Timestamp due_date = 6;
 }
 
@@ -72,14 +76,30 @@ message UpdateTaskResponse {
 }
 
 message DeleteTaskRequest {
-  uint64 id = 1;
+  uint64 user_id = 1;  // Для проверки прав доступа
+  uint64 id = 2;
 }
 
 message UpdateStatusRequest {
-  uint64 id = 1;
-  TaskStatus status = 2;
+  uint64 user_id = 1;  // Для проверки прав доступа
+  uint64 id = 2;
+  TaskStatus status = 3;
 }
 
 message UpdateStatusResponse {
   Task task = 1;
 }
+
+//// Новое сообщение для получения списка задач пользователя
+//message ListUserTasksRequest {
+//  string user_id = 1;
+//  // Опциональные параметры для пагинации и фильтрации
+//  int32 page_size = 2;
+//  string page_token = 3;
+//  TaskStatus status_filter = 4;  // Фильтр по статусу (опционально)
+//}
+//
+//message ListUserTasksResponse {
+//  repeated Task tasks = 1;
+//  string next_page_token = 2;
+//}
